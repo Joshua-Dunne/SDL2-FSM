@@ -1,10 +1,10 @@
-#include <Events.h>
+#include "../include/Events.h"
 
-#include <ClimbUpPlayerState.h>
+#include "../include/ClimbUpPlayerState.h"
 
-#include <ClimbPausePlayerState.h>
-#include <ClimbDownPlayerState.h>
-#include <DecendLadderPlayerState.h>
+#include "../include/ClimbPausePlayerState.h"
+#include "../include/ClimbDownPlayerState.h"
+#include "../include/DecendLadderPlayerState.h"
 
 
 PlayerState* ClimbUpPlayerState::handleInput(gpp::Events& input)

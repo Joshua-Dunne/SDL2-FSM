@@ -1,8 +1,8 @@
-#include <Events.h>
+#include "../include/Events.h"
 
-#include <DiedPlayerState.h>
+#include "../include/DiedPlayerState.h"
 
-#include <RevivedPlayerState.h>
+#include "../include/RevivedPlayerState.h"
 
 PlayerState* DiedPlayerState::handleInput(gpp::Events& input)
 {

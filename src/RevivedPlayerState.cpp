@@ -1,9 +1,9 @@
-#include <Events.h>
+#include "../include/Events.h"
 
-#include <RevivedPlayerState.h>
+#include "../include/RevivedPlayerState.h"
 
-#include <DiedPlayerState.h>
-#include <IdlePlayerState.h>
+#include "../include/DiedPlayerState.h"
+#include "../include/IdlePlayerState.h"
 
 PlayerState* RevivedPlayerState::handleInput(gpp::Events& input)
 {

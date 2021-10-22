@@ -4,10 +4,7 @@
 #include <vector>
 #include "../include/Debug.h"
 
-using namespace std;
-using namespace sf;
-
-class AnimatedSprite : public Sprite {
+class AnimatedSprite {
 public:
 	AnimatedSprite();
 	AnimatedSprite(const Texture&);
