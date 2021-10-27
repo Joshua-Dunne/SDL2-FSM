@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main()
+int main(int argv, char** args)
 {
 	Game game;
 	game.run();

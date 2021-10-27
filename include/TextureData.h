@@ -1,3 +1,6 @@
+#ifndef TEXTURE_DAT_H
+#define TEXTURE_DAT_H
+
 struct TextureData
 {
     int x;
@@ -5,3 +8,5 @@ struct TextureData
     int width;
     int height;
 };
+
+#endif
