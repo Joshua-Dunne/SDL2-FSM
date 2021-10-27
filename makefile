@@ -2,7 +2,7 @@ BUILD_DIR	:= ./bin
 SRC_DIR		:= ./src
 
 OUTPUT_NAME	:= "SDL2_FSM"
-COMP_FILES	:= ${SRC_DIR}/main.cpp ${SRC_DIR}/Game.cpp ${SRC_DIR}/Player.cpp ${SRC_DIR}/AnimatedSprite.cpp
+COMP_FILES	:= ${SRC_DIR}/*
 
 INCLUDE		:= ${SDL_SDK}\include
 LIB			:= ${SDL_SDK}\lib

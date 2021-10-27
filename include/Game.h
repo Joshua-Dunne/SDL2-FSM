@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
 #include <string>
 #include "../include/TextureData.h"
@@ -18,8 +19,9 @@ private:
     //Loads media
     void loadMedia();
 
-    SDL_Texture* loadFromFile(std::string path, SDL_Texture* tex, TextureData& data);
-    void renderTexture(SDL_Texture* t_tex, TextureData t_data);  
+    SDL_Texture* loadFromFileBMP(std::string path, SDL_Texture* tex, TextureData& data);
+    SDL_Texture* loadFromFilePNG(std::string path, SDL_Texture* tex, TextureData& data);
+    void renderTexture(SDL_Texture* t_tex, TextureData t_data);
 
     //Frees media and shuts down SDL
     void close();

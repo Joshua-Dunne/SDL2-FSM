@@ -40,6 +40,12 @@ void Game::run()
         }
     }
 
+    int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+	}
+
     loadMedia();
 
     Uint64 end = SDL_GetPerformanceCounter();
@@ -72,12 +78,12 @@ void Game::loadMedia()
 {
     // load necessary information here
     // Example: texture = loadFromFile("path", SDL_Surface, TextureData);
-    m_playerTex = loadFromFile(PLAYER_SPRITES, m_playerTex, m_playerTexData);
+    m_playerTex = loadFromFilePNG(PLAYER_SPRITES, m_playerTex, m_playerTexData);
 
     // player texture data won't be used, but we will keep it for debugging purposes if needed
 }
 
-SDL_Texture* Game::loadFromFile(std::string path, SDL_Texture* tex, TextureData& data)
+SDL_Texture* Game::loadFromFileBMP(std::string path, SDL_Texture* tex, TextureData& data)
 {
     //Load image at specified path
     SDL_Surface* loadedSurface = SDL_LoadBMP(path.c_str());
@@ -111,6 +117,30 @@ SDL_Texture* Game::loadFromFile(std::string path, SDL_Texture* tex, TextureData&
     }
 
     return tex;
+}
+
+SDL_Texture* Game::loadFromFilePNG(std::string path, SDL_Texture* tex, TextureData& data)
+{
+    SDL_Texture* newTexture{ NULL };
+
+		SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+
+		if (loadedSurface == NULL)
+		{
+			printf("Unable to load image %s! SDL_image Error: %s\n", path, IMG_GetError());
+		}
+		else
+		{
+			newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+			if (newTexture == NULL)
+			{
+				printf("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
+			}
+
+			SDL_FreeSurface(loadedSurface);
+		}
+
+		return newTexture;
 }
 
 void Game::processEvents()
