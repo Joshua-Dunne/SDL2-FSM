@@ -29,18 +29,18 @@ void AttackPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering AttackPlayerState");
 	player.getAnimatedSprite().clearFrames();
-/*
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 0, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(536, 0, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(1072, 0, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 495, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(536, 495, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(1072, 495, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 990, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(536, 990, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(1072, 990, 536, 495));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 1485, 536, 495));
-*/
+
+	player.getAnimatedSprite().addFrame(new TextureData(0, 0, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(536, 0, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(1072, 0, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 495, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(536, 495, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(1072, 495, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 990, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(536, 990, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(1072, 990, 536, 495));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 1485, 536, 495));
+
 	player.getAnimatedSprite().setTime(0.03f);
 }
 void AttackPlayerState::exit(Player& player)

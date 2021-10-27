@@ -30,7 +30,7 @@ void AccendLadderPlayerState::enter(Player& player)
 	DEBUG_MSG("Entering AccendLadderPlayerState");
 	player.getAnimatedSprite().clearFrames();
 
-	//player.getAnimatedSprite().addFrame(sf::IntRect(1608, 464, 282, 464));
+	player.getAnimatedSprite().addFrame(new TextureData(1608, 464, 282, 464));
 
 	player.getAnimatedSprite().setTime(0.05f);
 }

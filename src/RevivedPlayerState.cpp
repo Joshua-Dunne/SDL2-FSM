@@ -42,19 +42,18 @@ void RevivedPlayerState::enter(Player& player)
 	player.getAnimatedSprite().setPlayed(false);
 	player.getAnimatedSprite().setLooped(false);
 
-/*
 	// Add animation frames
-	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 1494, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 996, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 996, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 996, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 498, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 498, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 498, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 0, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 0, 482, 498));
-	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 0, 482, 498));
-*/
+	player.getAnimatedSprite().addFrame(new TextureData(2454, 1494, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(3418, 996, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2936, 996, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2454, 996, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(3418, 498, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2936, 498, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2454, 498, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(3418, 0, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2936, 0, 482, 498));
+	player.getAnimatedSprite().addFrame(new TextureData(2454, 0, 482, 498));
+
 	// Set the animation time
 	player.getAnimatedSprite().setTime(0.03f);
 }

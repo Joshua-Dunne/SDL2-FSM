@@ -48,22 +48,22 @@ PlayerState* IdlePlayerState::handleInput(gpp::Events& input) {
 
 void IdlePlayerState::update(Player& player, float dt) {}
 
-void IdlePlayerState::enter(Player& player) 
+void IdlePlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering IdlePlayerState");
 	player.getAnimatedSprite().clearFrames();
-/*
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 0, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4132, 0, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4364, 0, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 439, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4132, 439, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4364, 439, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 878, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4132, 878, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4364, 878, 232, 439));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 1317, 232, 439));
-*/	
+
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 0, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4132, 0, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4364, 0, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 439, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4132, 439, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4364, 439, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 878, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4132, 878, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(4364, 878, 232, 439));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 1317, 232, 439));
+
 	player.getAnimatedSprite().setTime(0.05f);
 }
 

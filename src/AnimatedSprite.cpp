@@ -1,6 +1,6 @@
 #include "../include/AnimatedSprite.h"
 
-AnimatedSprite::AnimatedSprite() : 
+AnimatedSprite::AnimatedSprite() :
 	m_current_frame(0),
 	m_time(0.5f),
 	m_loop(true),
@@ -23,7 +23,7 @@ void AnimatedSprite::setTime(float t)
 	this->m_maxTime = t;
 }
 
-const std::vector<SDL_Texture*>& AnimatedSprite::getFrames() {
+const std::vector<TextureData*>& AnimatedSprite::getFrames() {
 	return m_frames;
 }
 
@@ -32,11 +32,18 @@ void AnimatedSprite::clearFrames() {
 	m_played = false;
 	if (!m_frames.empty())
 	{
+		// since we are working with pointers in this vector,
+		// we need to de-allocate memory
+		for (auto p : m_frames)
+		{
+			delete p;
+		}
+
 		m_frames.clear();
 	}
 }
 
-void AnimatedSprite::addFrame(SDL_Texture* frame) {
+void AnimatedSprite::addFrame(TextureData* frame) {
 	m_frames.push_back(frame);
 }
 
@@ -44,7 +51,7 @@ const int AnimatedSprite::getCurrentFrame() {
 	return m_current_frame;
 }
 
-SDL_Texture* AnimatedSprite::getCurrentAnimatedFrame()
+TextureData* AnimatedSprite::getCurrentAnimatedFrame()
 {
 	return m_frames[m_current_frame];
 }

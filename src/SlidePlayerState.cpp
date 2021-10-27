@@ -43,18 +43,16 @@ void SlidePlayerState::enter(Player& player)
 	DEBUG_MSG("Entering SlidePlayerState");
 	player.getAnimatedSprite().clearFrames();
 
-/*
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 5388, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 5739, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(373, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(746, 6090, 373, 351));
-	player.getAnimatedSprite().addFrame(sf::IntRect(0, 6441, 373, 351));
-*/
+	player.getAnimatedSprite().addFrame(new TextureData(0, 5388, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(373, 5388, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(746, 5388, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 5739, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(373, 5739, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(746, 5739, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 6090, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(373, 6090, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(746, 6090, 373, 351));
+	player.getAnimatedSprite().addFrame(new TextureData(0, 6441, 373, 351));
 
 	player.getAnimatedSprite().setTime(0.03f);
 }

@@ -12,11 +12,11 @@ public:
 	AnimatedSprite(const SDL_Texture*);
 	~AnimatedSprite();
 
-	const std::vector<SDL_Texture*>& getFrames();
+	const std::vector<TextureData*>& getFrames();
 	void clearFrames();
-	const SDL_Texture& getFrame(int);
-	void addFrame(SDL_Texture*);
-	SDL_Texture* getCurrentAnimatedFrame();
+	const TextureData& getFrame(int);
+	void addFrame(TextureData*);
+	TextureData* getCurrentAnimatedFrame();
 	const int getCurrentFrame();
 	void setLooped(bool);
 	const bool getLooped();
@@ -28,7 +28,7 @@ public:
 private:
 	float m_maxTime;
 	float m_time;
-	std::vector<SDL_Texture*> m_frames;
+	std::vector<TextureData*> m_frames;
 	unsigned int m_current_frame;
 	bool m_loop;
 	bool m_played;

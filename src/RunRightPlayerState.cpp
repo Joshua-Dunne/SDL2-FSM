@@ -58,22 +58,20 @@ void RunRightPlayerState::enter(Player& player)
 	DEBUG_MSG("Entering RunRightPlayerState");
 	player.getAnimatedSprite().clearFrames();
 
-/*
-	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 3556, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 3556, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 3556, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 4014, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 4014, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 4014, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 4472, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 4472, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 4472, 363, 458));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 4930, 363, 458));
-*/
+	player.getAnimatedSprite().addFrame(new TextureData(4986, 3556, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5349, 3556, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5712, 3556, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(4986, 4014, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5349, 4014, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5712, 4014, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(4986, 4472, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5349, 4472, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(5712, 4472, 363, 458));
+	player.getAnimatedSprite().addFrame(new TextureData(4986, 4930, 363, 458));
 
 	player.getAnimatedSprite().setTime(0.05f);
 }
-void RunRightPlayerState::exit(Player& player) 
+void RunRightPlayerState::exit(Player& player)
 {
 	DEBUG_MSG("Exiting RunRightPlayerState");
 }

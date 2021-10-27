@@ -46,18 +46,17 @@ void JumpPlayerState::enter(Player& player)
 
 	player.getAnimatedSprite().setPlayed(false);
 	player.getAnimatedSprite().setLooped(false);
-/*
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 1756, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4262, 1756, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4624, 1756, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 2239, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4262, 2239, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4624, 2239, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 2722, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4262, 2722, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(4624, 2722, 362, 483));
-	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 3205, 362, 483));
-*/
+
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 1756, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4262, 1756, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4624, 1756, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 2239, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4262, 2239, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4624, 2239, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 2722, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4262, 2722, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(4624, 2722, 362, 483));
+	player.getAnimatedSprite().addFrame(new TextureData(3900, 3205, 362, 483));
 
 	player.getAnimatedSprite().setTime(0.03f);
 }
