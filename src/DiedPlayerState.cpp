@@ -13,7 +13,7 @@ PlayerState* DiedPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void DiedPlayerState::update(Player& player) {}
+void DiedPlayerState::update(Player& player, float dt) {}
 void DiedPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering DiedPlayerState");
@@ -21,7 +21,7 @@ void DiedPlayerState::enter(Player& player)
 
 	player.getAnimatedSprite().setPlayed(false);
 	player.getAnimatedSprite().setLooped(false);
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 0, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 0, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 0, 482, 498));
@@ -32,8 +32,8 @@ void DiedPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 996, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 996, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 1494, 482, 498));
-
-	player.getAnimatedSprite().setTime(seconds(0.03f));
+*/
+	player.getAnimatedSprite().setTime(0.03f);
 }
 void DiedPlayerState::exit(Player& player)
 {

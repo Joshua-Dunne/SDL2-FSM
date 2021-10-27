@@ -19,12 +19,12 @@ PlayerState* JumpThrowAttackPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void JumpThrowAttackPlayerState::update(Player& player) {}
+void JumpThrowAttackPlayerState::update(Player& player, float dt) {}
 void JumpThrowAttackPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering JumpThrowAttackPlayerState");
 	player.getAnimatedSprite().clearFrames();
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(4596, 0, 360, 431));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4956, 0, 360, 431));
 	player.getAnimatedSprite().addFrame(sf::IntRect(5316, 0, 360, 431));
@@ -35,8 +35,9 @@ void JumpThrowAttackPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(4956, 862, 360, 431));
 	player.getAnimatedSprite().addFrame(sf::IntRect(5316, 862, 360, 431));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4596, 1293, 360, 431));
+*/
 
-	player.getAnimatedSprite().setTime(seconds(0.05f));
+	player.getAnimatedSprite().setTime(0.05f);
 }
 void JumpThrowAttackPlayerState::exit(Player& player)
 {

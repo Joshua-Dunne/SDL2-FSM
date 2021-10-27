@@ -19,14 +19,16 @@ PlayerState* SlidePlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void SlidePlayerState::update(Player& player) {
+void SlidePlayerState::update(Player& player, float dt) {
 	// Switch from SlidePlayerState to IdlePlayerState
 	// There is a fixed time at which the slide switched
 	// back to IdlePlayerState....as the gameplay programmer
 	// you may wish to stop the slide and have an appropriate
 	// state and animation at the end of the slide
 	// this was added so sliding does not go one indefinitely
-	if (m_clock.getElapsedTime().asSeconds() > 2.0f) {
+	m_clock += dt;
+
+	if (m_clock >= 2.0f) {
 		DEBUG_MSG("SlidePlayerState -> IdlePlayerState");
 		PlayerState* temp = player.getPlayerState();
 		PlayerState* state = new IdlePlayerState();
@@ -41,6 +43,7 @@ void SlidePlayerState::enter(Player& player)
 	DEBUG_MSG("Entering SlidePlayerState");
 	player.getAnimatedSprite().clearFrames();
 
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(0, 5388, 373, 351));
 	player.getAnimatedSprite().addFrame(sf::IntRect(373, 5388, 373, 351));
 	player.getAnimatedSprite().addFrame(sf::IntRect(746, 5388, 373, 351));
@@ -51,8 +54,9 @@ void SlidePlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(373, 6090, 373, 351));
 	player.getAnimatedSprite().addFrame(sf::IntRect(746, 6090, 373, 351));
 	player.getAnimatedSprite().addFrame(sf::IntRect(0, 6441, 373, 351));
+*/
 
-	player.getAnimatedSpriteFrame().setTime(seconds(0.03f));
+	player.getAnimatedSprite().setTime(0.03f);
 }
 void SlidePlayerState::exit(Player& player)
 {

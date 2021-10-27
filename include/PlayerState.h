@@ -10,7 +10,7 @@ class PlayerState {
 public:
 	virtual ~PlayerState() {};
 	virtual PlayerState* handleInput(gpp::Events&) = 0;
-	virtual void update(Player&) = 0;
+	virtual void update(Player&, float dt) = 0;
 	virtual void enter(Player&) = 0;
 	virtual void exit(Player&) = 0;
 };

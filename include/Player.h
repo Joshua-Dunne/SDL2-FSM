@@ -4,6 +4,7 @@
 #include "../include/Events.h"
 #include "../include/PlayerState.h"
 #include "../include/AnimatedSprite.h"
+#include "../include/TextureData.h"
 
 class Player
 {

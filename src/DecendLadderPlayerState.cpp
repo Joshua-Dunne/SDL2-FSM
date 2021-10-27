@@ -24,13 +24,13 @@ PlayerState* DecendLadderPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void DecendLadderPlayerState::update(Player& player) {}
+void DecendLadderPlayerState::update(Player& player, float dt) {}
 void DecendLadderPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering DecendLadderPlayerState");
 	player.getAnimatedSprite().clearFrames();
 
-	player.getAnimatedSprite().addFrame(sf::IntRect(1608, 464, 282, 464));
+	//player.getAnimatedSprite().addFrame(sf::IntRect(1608, 464, 282, 464));
 
 	player.getAnimatedSprite().setTime(0.05f);
 }

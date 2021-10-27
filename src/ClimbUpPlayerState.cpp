@@ -24,17 +24,17 @@ PlayerState* ClimbUpPlayerState::handleInput(gpp::Events& input)
 		DEBUG_MSG("ClimbUpPlayerState -> DecendLadderPlayerState");
 		return new DecendLadderPlayerState();
 	}
-	
+
 	return nullptr;
 }
-void ClimbUpPlayerState::update(Player& player) {}
-void ClimbUpPlayerState::enter(Player& player) 
+void ClimbUpPlayerState::update(Player& player, float dt) {}
+void ClimbUpPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering ClimbUpPlayerState");
 
 	// Climb Up Animated Sprite
 	player.getAnimatedSprite().clearFrames();
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(1608, 1392, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2172, 928, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1890, 928, 282, 464));
@@ -45,8 +45,8 @@ void ClimbUpPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(2172, 0, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1890, 0, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1608, 0, 282, 464));
-	
-	player.getAnimatedSprite().setTime(seconds(0.05f));
+*/
+	player.getAnimatedSprite().setTime(0.05f);
 }
 void ClimbUpPlayerState::exit(Player& player)
 {

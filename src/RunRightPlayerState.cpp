@@ -52,12 +52,13 @@ PlayerState* RunRightPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void RunRightPlayerState::update(Player& player) {}
+void RunRightPlayerState::update(Player& player, float dt) {}
 void RunRightPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering RunRightPlayerState");
 	player.getAnimatedSprite().clearFrames();
 
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 3556, 363, 458));
 	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 3556, 363, 458));
 	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 3556, 363, 458));
@@ -68,8 +69,9 @@ void RunRightPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(5349, 4472, 363, 458));
 	player.getAnimatedSprite().addFrame(sf::IntRect(5712, 4472, 363, 458));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4986, 4930, 363, 458));
+*/
 
-	player.getAnimatedSpriteFrame().setTime(seconds(0.05f));
+	player.getAnimatedSprite().setTime(0.05f);
 }
 void RunRightPlayerState::exit(Player& player) 
 {

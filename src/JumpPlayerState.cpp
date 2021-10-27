@@ -25,9 +25,12 @@ PlayerState* JumpPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void JumpPlayerState::update(Player& player) {
+void JumpPlayerState::update(Player& player, float dt) {
 	DEBUG_MSG("JumpPlayerState -> GlidePlayerState");
-	if (m_clock.getElapsedTime().asSeconds() > 1.2f) {
+
+	m_clock += dt;
+
+	if (m_clock >= 1.2f) {
 		PlayerState* temp = player.getPlayerState();
 		PlayerState* state = new GlidePlayerState();
 		player.getPlayerState()->exit(player);
@@ -43,7 +46,7 @@ void JumpPlayerState::enter(Player& player)
 
 	player.getAnimatedSprite().setPlayed(false);
 	player.getAnimatedSprite().setLooped(false);
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 1756, 362, 483));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4262, 1756, 362, 483));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4624, 1756, 362, 483));
@@ -54,8 +57,9 @@ void JumpPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(4262, 2722, 362, 483));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4624, 2722, 362, 483));
 	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 3205, 362, 483));
+*/
 
-	player.getAnimatedSpriteFrame().setTime(seconds(0.03f));
+	player.getAnimatedSprite().setTime(0.03f);
 }
 void JumpPlayerState::exit(Player& player)
 {

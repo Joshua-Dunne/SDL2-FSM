@@ -7,7 +7,7 @@
 class JumpAttackPlayerState : public PlayerState {
 public:
 	virtual PlayerState* handleInput(gpp::Events& input);
-	virtual void update(Player&);
+	virtual void update(Player&, float dt);
 	virtual void enter(Player&);
 	virtual void exit(Player&);
 };

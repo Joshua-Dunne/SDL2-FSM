@@ -46,13 +46,13 @@ PlayerState* IdlePlayerState::handleInput(gpp::Events& input) {
 	return nullptr;
 }
 
-void IdlePlayerState::update(Player& player) {}
+void IdlePlayerState::update(Player& player, float dt) {}
 
 void IdlePlayerState::enter(Player& player) 
 {
 	DEBUG_MSG("Entering IdlePlayerState");
 	player.getAnimatedSprite().clearFrames();
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 0, 232, 439));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4132, 0, 232, 439));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4364, 0, 232, 439));
@@ -63,8 +63,8 @@ void IdlePlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(4132, 878, 232, 439));
 	player.getAnimatedSprite().addFrame(sf::IntRect(4364, 878, 232, 439));
 	player.getAnimatedSprite().addFrame(sf::IntRect(3900, 1317, 232, 439));
-	
-	player.getAnimatedSprite().setTime(seconds(0.05f));
+*/	
+	player.getAnimatedSprite().setTime(0.05f);
 }
 
 void IdlePlayerState::exit(Player& player)

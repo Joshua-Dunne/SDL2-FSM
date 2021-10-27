@@ -24,12 +24,12 @@ PlayerState* AttackPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void AttackPlayerState::update(Player& player) {}
+void AttackPlayerState::update(Player& player, float dt) {}
 void AttackPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering AttackPlayerState");
 	player.getAnimatedSprite().clearFrames();
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(0, 0, 536, 495));
 	player.getAnimatedSprite().addFrame(sf::IntRect(536, 0, 536, 495));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1072, 0, 536, 495));
@@ -40,8 +40,8 @@ void AttackPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(536, 990, 536, 495));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1072, 990, 536, 495));
 	player.getAnimatedSprite().addFrame(sf::IntRect(0, 1485, 536, 495));
-
-	player.getAnimatedSprite().setTime(seconds(0.03f));
+*/
+	player.getAnimatedSprite().setTime(0.03f);
 }
 void AttackPlayerState::exit(Player& player)
 {

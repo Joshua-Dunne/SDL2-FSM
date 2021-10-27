@@ -20,13 +20,13 @@ PlayerState* ClimbDownPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void ClimbDownPlayerState::update(Player& player) {}
+void ClimbDownPlayerState::update(Player& player, float dt) {}
 void ClimbDownPlayerState::enter(Player& player)
 {
 	DEBUG_MSG("Entering ClimbDownPlayerState");
 	// Climb Down Animated Sprite
 	player.getAnimatedSprite().clearFrames();
-
+/*
 	player.getAnimatedSprite().addFrame(sf::IntRect(1608, 0, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1890, 0, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2172, 0, 282, 464));
@@ -37,8 +37,8 @@ void ClimbDownPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(1890, 928, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2172, 928, 282, 464));
 	player.getAnimatedSprite().addFrame(sf::IntRect(1608, 1392, 282, 464));
-
-	player.getAnimatedSprite().setTime(seconds(0.05f));
+*/
+	player.getAnimatedSprite().setTime(0.05f);
 
 }
 void ClimbDownPlayerState::exit(Player& player) 

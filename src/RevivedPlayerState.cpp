@@ -14,10 +14,12 @@ PlayerState* RevivedPlayerState::handleInput(gpp::Events& input)
 	}
 	return nullptr;
 }
-void RevivedPlayerState::update(Player& player) {
+void RevivedPlayerState::update(Player& player, float dt) {
 	// Switch from RevivedPlayerState to IdlePlayerState
 	DEBUG_MSG("RevivedPlayerState -> IdlePlayerState");
-	if (m_clock.getElapsedTime().asSeconds() > 0.5f) {
+
+	m_clock += dt;
+	if (m_clock >= 0.5f) {
 		PlayerState* temp = player.getPlayerState();
 		PlayerState* state = new IdlePlayerState();
 		player.getPlayerState()->exit(player);
@@ -31,7 +33,7 @@ void RevivedPlayerState::enter(Player& player)
 	DEBUG_MSG("Entering RevivedPlayerState");
 
 	// How long in State Clock
-	this->m_clock.restart();
+	m_clock = 0.0f;
 
 	// Clear existing frames
 	player.getAnimatedSprite().clearFrames();
@@ -40,6 +42,7 @@ void RevivedPlayerState::enter(Player& player)
 	player.getAnimatedSprite().setPlayed(false);
 	player.getAnimatedSprite().setLooped(false);
 
+/*
 	// Add animation frames
 	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 1494, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 996, 482, 498));
@@ -51,9 +54,9 @@ void RevivedPlayerState::enter(Player& player)
 	player.getAnimatedSprite().addFrame(sf::IntRect(3418, 0, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2936, 0, 482, 498));
 	player.getAnimatedSprite().addFrame(sf::IntRect(2454, 0, 482, 498));
-	
+*/
 	// Set the animation time
-	player.getAnimatedSprite().setTime(seconds(0.03f));
+	player.getAnimatedSprite().setTime(0.03f);
 }
 void RevivedPlayerState::exit(Player& player)
 {
