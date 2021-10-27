@@ -2,45 +2,28 @@
 
 AnimatedSprite::AnimatedSprite() : 
 	m_current_frame(0),
-	m_time(seconds(0.5f)),
+	m_time(0.5f),
 	m_loop(true),
-	m_play_count(0),
-	m_max_plays(0),
 	m_played(false)
 {
 	DEBUG_MSG("AnimatedSprite()");
 }
 
-AnimatedSprite::AnimatedSprite(const sf::Texture& t) : AnimatedSprite(){
+AnimatedSprite::AnimatedSprite(const SDL_Texture* t) : AnimatedSprite(){
 	DEBUG_MSG("AnimatedSprite(const Texture&)");
-	this->setTexture(t);
-}
-
-AnimatedSprite::AnimatedSprite(const sf::Texture& t, const sf::IntRect& rect) : 
-	AnimatedSprite(t)
-{
-	DEBUG_MSG("AnimatedSprite(const Texture&, const IntRect&)");
-	m_frames.push_back(rect);
 }
 
 AnimatedSprite::~AnimatedSprite() {
 	DEBUG_MSG("~AnimatedSprite()");
 }
 
-const sf::Clock& AnimatedSprite::getClock() {
-	return m_clock;
-}
-
-const sf::Time& AnimatedSprite::getTime() {
-	return m_time;
-}
-
-void AnimatedSprite::setTime(Time t)
+// Set the time between frames
+void AnimatedSprite::setTime(float t)
 {
-	this->m_time = t;
+	this->m_maxTime = t;
 }
 
-const vector<IntRect>& AnimatedSprite::getFrames() {
+const std::vector<SDL_Texture*>& AnimatedSprite::getFrames() {
 	return m_frames;
 }
 
@@ -53,16 +36,17 @@ void AnimatedSprite::clearFrames() {
 	}
 }
 
-const IntRect& AnimatedSprite::getFrame(int n) {
-	return m_frames[n];
-}
-
-void AnimatedSprite::addFrame(const IntRect& frame) {
+void AnimatedSprite::addFrame(SDL_Texture* frame) {
 	m_frames.push_back(frame);
 }
 
 const int AnimatedSprite::getCurrentFrame() {
 	return m_current_frame;
+}
+
+SDL_Texture* AnimatedSprite::getCurrentAnimatedFrame()
+{
+	return m_frames[m_current_frame];
 }
 
 void AnimatedSprite::setLooped(bool loop) {
@@ -81,14 +65,14 @@ const bool AnimatedSprite::getPlayed() {
 	return this->m_played;
 }
 
-void AnimatedSprite::update(){
+void AnimatedSprite::update(float dt){
 	// If not looped only play once
 	if (m_played == true && !m_loop)
 	{
 		m_current_frame = m_frames.size() - 1;
 	}
 	else {
-		if (m_clock.getElapsedTime() > m_time) {
+		if (m_time >= m_maxTime) {
 			if (m_frames.size() > m_current_frame + 1)
 			{
 				m_current_frame++;
@@ -97,9 +81,11 @@ void AnimatedSprite::update(){
 				m_current_frame = 0;
 				m_played = true;
 			}
-			m_clock.restart();
+			m_time = 0.0f;
+		}
+		else {
+			m_time += dt;
 		}
 	}
-	
 }
 

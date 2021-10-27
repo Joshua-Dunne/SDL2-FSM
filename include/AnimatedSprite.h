@@ -2,37 +2,35 @@
 #define ANIMATED_SPRITE_H
 
 #include <vector>
+#include <SDL2/SDL.h>
+#include "../include/TextureData.h"
 #include "../include/Debug.h"
 
 class AnimatedSprite {
 public:
 	AnimatedSprite();
-	AnimatedSprite(const Texture&);
-	AnimatedSprite(const Texture&, const IntRect&);
+	AnimatedSprite(const SDL_Texture*);
 	~AnimatedSprite();
 
-	const Clock& getClock();
-	const Time& getTime();
-	const vector<IntRect>& getFrames();
+	const std::vector<SDL_Texture*>& getFrames();
 	void clearFrames();
-	const IntRect& getFrame(int);
-	void addFrame(const IntRect&);
+	const SDL_Texture& getFrame(int);
+	void addFrame(SDL_Texture*);
+	SDL_Texture* getCurrentAnimatedFrame();
 	const int getCurrentFrame();
 	void setLooped(bool);
 	const bool getLooped();
 	void setPlayed(bool);
 	const bool getPlayed();
-	void setTime(Time);
-	void update();
+	void setTime(float time);
+	void update(float dt);
 	
 private:
-	Clock m_clock;
-	Time m_time;
-	vector<IntRect> m_frames;
+	float m_maxTime;
+	float m_time;
+	std::vector<SDL_Texture*> m_frames;
 	unsigned int m_current_frame;
 	bool m_loop;
-	unsigned int m_play_count;
-	unsigned int m_max_plays;
 	bool m_played;
 };
 

@@ -12,11 +12,11 @@ private:
 	AnimatedSprite m_animated_sprite;
 
 public:
-	Player(const AnimatedSprite&);
+	Player(const SDL_Texture*);
 	virtual void handleInput(gpp::Events);
-	virtual void update();
+	virtual void update(float dt);
 	AnimatedSprite& getAnimatedSprite();
-	AnimatedSprite& getAnimatedSpriteFrame();
+	SDL_Texture* getAnimatedSpriteFrame();
 	void setAnimatedSprite(AnimatedSprite&);
 	PlayerState* getPlayerState();
 	void setPlayerState(PlayerState*);
