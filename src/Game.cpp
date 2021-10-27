@@ -2,7 +2,7 @@
 
 Game::Game() :
     m_gameIsRunning{ false }
-{  
+{
 }
 
 Game::~Game()
@@ -12,6 +12,9 @@ Game::~Game()
 
 void Game::run()
 {
+    // get performance counter before initialization to get starting elapsed time
+    Uint64 start = SDL_GetPerformanceCounter();
+
     //Initialize SDL
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
     {
@@ -29,18 +32,39 @@ void Game::run()
         {
             //Get window surface
             screenSurface = SDL_GetWindowSurface( window );
-            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+            // enable VSync when creating renderer
+            // passing the flag SDL_RENDERER_PRESENTVSYNC to SDL_CreateRenderer()
+            // causes subsequent calls to SDL_RenderPresent() to wait before showing the window.
+            SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED );
         }
     }
 
     loadMedia();
 
+    Uint64 end = SDL_GetPerformanceCounter();
+
+    // calculate elapsed time for first frame
+	float m_elapsed = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
+
+	// Cap to 60 FPS
+	SDL_Delay(floor(16.666f - m_elapsed));
+
+    // This is only done for the first initial wave, as everything else is calculated as the loop progresses
+
+
     m_gameIsRunning = true;
     while (m_gameIsRunning)
     {
+        Uint32 current = SDL_GetTicks();
+        float dT = (current - m_elapsed) / 1000.0f;
+
         processEvents();
-        update();
+        update(dT);
         render();
+
+        m_elapsed = current;
+
     }
 }
 
@@ -48,6 +72,9 @@ void Game::loadMedia()
 {
     // load necessary information here
     // Example: texture = loadFromFile("path", SDL_Surface, TextureData);
+    m_playerTex = loadFromFile(PLAYER_SPRITES, m_playerTex, m_playerTexData);
+
+    // player texture data won't be used, but we will keep it for debugging purposes if needed
 }
 
 SDL_Texture* Game::loadFromFile(std::string path, SDL_Texture* tex, TextureData& data)
@@ -110,9 +137,10 @@ void Game::processMouse(SDL_MouseButtonEvent& b)
     // process potential mouse events
 }
 
-void Game::update()
+void Game::update(float dt)
 {
    // std::cout << "Updating" << std::endl;
+   player.update(dt);
 }
 
 void Game::renderTexture(SDL_Texture* t_tex, TextureData t_data)
@@ -123,7 +151,7 @@ void Game::renderTexture(SDL_Texture* t_tex, TextureData t_data)
     renderQuad.y = t_data.y;
     renderQuad.w = t_data.width;
     renderQuad.h = t_data.height;
-    
+
     //Render to screen
     SDL_RenderCopy(renderer, t_tex, NULL, &renderQuad);
 }
@@ -144,6 +172,7 @@ void Game::render()
 
         // Render Textures here
         // Example: renderTexture(SDL_Surface, TextureData);
+        renderTexture(m_playerTex, *player.getAnimatedSpriteFrame());
 
         SDL_RenderPresent(renderer);
     }
@@ -153,7 +182,7 @@ void Game::render()
 
 void Game::cleanUp()
 {
-    std::cout << "Cleaning up" << std::endl;    
+    std::cout << "Cleaning up" << std::endl;
 
     //Destroy window
     SDL_DestroyWindow( window );

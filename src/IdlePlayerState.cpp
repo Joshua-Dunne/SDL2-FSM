@@ -10,6 +10,7 @@
 #include "../include/JumpPlayerState.h"
 #include "../include/DiedPlayerState.h"
 
+IdlePlayerState::~IdlePlayerState() {}
 
 PlayerState* IdlePlayerState::handleInput(gpp::Events& input) {
 

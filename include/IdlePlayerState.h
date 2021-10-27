@@ -6,6 +6,7 @@
 
 class IdlePlayerState : public PlayerState{
 public:
+	virtual ~IdlePlayerState();
 	virtual PlayerState* handleInput(gpp::Events& input);
 	virtual void update(Player&, float dt);
 	virtual void enter(Player&);

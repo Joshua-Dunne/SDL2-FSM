@@ -13,11 +13,11 @@ private:
 	AnimatedSprite m_animated_sprite;
 
 public:
-	Player(const SDL_Texture*);
+	Player();
 	virtual void handleInput(gpp::Events);
 	virtual void update(float dt);
 	AnimatedSprite& getAnimatedSprite();
-	SDL_Texture* getAnimatedSpriteFrame();
+	TextureData* getAnimatedSpriteFrame();
 	void setAnimatedSprite(AnimatedSprite&);
 	PlayerState* getPlayerState();
 	void setPlayerState(PlayerState*);

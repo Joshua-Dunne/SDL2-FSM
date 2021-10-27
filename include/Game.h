@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include "../include/TextureData.h"
+#include "../include/Defines.h"
+#include "../include/Player.h"
 
 class Game
 {
@@ -24,19 +26,21 @@ private:
 
     void processEvents();
     void processMouse(SDL_MouseButtonEvent& b);
-    void update();
+    void update(float dt);
     void render();
 
     void cleanUp();
 
     bool m_gameIsRunning;
 
+    float m_elapsed;
+
     //Event handler
     SDL_Event e;
 
     //Screen dimension constants
-    const int SCREEN_WIDTH = 800;
-    const int SCREEN_HEIGHT = 512;
+    const int SCREEN_WIDTH = 1280;
+    const int SCREEN_HEIGHT = 720;
 
     //The window we'll be rendering to
     SDL_Window* window = NULL;
@@ -46,4 +50,9 @@ private:
 
     // Used to render images to a window
     SDL_Renderer* renderer = NULL;
+
+    Player player;
+
+    SDL_Texture* m_playerTex = NULL;
+    TextureData m_playerTexData;
 };

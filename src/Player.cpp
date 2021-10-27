@@ -4,9 +4,9 @@
 #include "../include/IdlePlayerState.h"
 
 
-Player::Player(const SDL_Texture* t) : m_animated_sprite(t)
+Player::Player()
 {
-	// Set the Player to Default to IdlePlayer State 
+	// Set the Player to Default to IdlePlayer State
 	// and Enter that State
 	m_state = new IdlePlayerState();
 	m_state->enter(*this);
@@ -25,14 +25,14 @@ void Player::handleInput(gpp::Events input) {
 
 void Player::update(float dt) {
 	m_animated_sprite.update(dt);
-	m_state->update(*this);
+	m_state->update(*this, dt);
 }
 
 AnimatedSprite& Player::getAnimatedSprite() {
 	return m_animated_sprite;
 }
 
-SDL_Texture* Player::getAnimatedSpriteFrame() {
+TextureData* Player::getAnimatedSpriteFrame() {
 	return m_animated_sprite.getCurrentAnimatedFrame();
 }
 
