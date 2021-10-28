@@ -5,6 +5,7 @@
 #include "../include/PlayerState.h"
 #include "../include/AnimatedSprite.h"
 #include "../include/TextureData.h"
+#include "../include/Vector2.h"
 
 class Player
 {
@@ -14,6 +15,7 @@ private:
 
 public:
 	Player();
+	Player(Vector2 t_pos);
 	virtual void handleInput(gpp::Events);
 	virtual void update(float dt);
 	AnimatedSprite& getAnimatedSprite();
@@ -21,6 +23,10 @@ public:
 	void setAnimatedSprite(AnimatedSprite&);
 	PlayerState* getPlayerState();
 	void setPlayerState(PlayerState*);
+
+	void move(Vector2);
+
+	Vector2 m_pos;
 };
 #endif
 

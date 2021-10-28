@@ -53,7 +53,7 @@ private:
     // Used to render images to a window
     SDL_Renderer* renderer = NULL;
 
-    Player player;
+    Player player{Vector2(0,0)};
 
     SDL_Texture* m_playerTex = NULL;
     TextureData m_playerTexData;

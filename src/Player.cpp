@@ -12,6 +12,14 @@ Player::Player()
 	m_state->enter(*this);
 }
 
+Player::Player(Vector2 t_pos) : m_pos(t_pos)
+{
+	// Set the Player to Default to IdlePlayer State
+	// and Enter that State
+	m_state = new IdlePlayerState();
+	m_state->enter(*this);
+}
+
 void Player::handleInput(gpp::Events input) {
 	PlayerState * state = m_state->handleInput(input);
 
@@ -43,3 +51,8 @@ void Player::setAnimatedSprite(AnimatedSprite& animated_sprite) {
 PlayerState* Player::getPlayerState() { return this->m_state; }
 
 void Player::setPlayerState(PlayerState* state) { this->m_state = state; }
+
+void Player::move(Vector2 t_dir) {
+
+	m_pos = m_pos + t_dir;
+}

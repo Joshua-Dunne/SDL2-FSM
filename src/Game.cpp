@@ -173,6 +173,7 @@ void Game::processMouse(SDL_MouseButtonEvent& b)
 void Game::update(float dt)
 {
    // std::cout << "Updating" << std::endl;
+   player.move(Vector2(40.0f * dt,0));
    player.update(dt);
 }
 
@@ -185,15 +186,15 @@ void Game::renderTexture(SDL_Texture* t_tex, TextureData t_texdata)
     renderQuad.w = t_texdata.width;
     renderQuad.h = t_texdata.height;
 
-    SDL_FRect farQuaad;
-    farQuaad.x = 0;
-    farQuaad.y = 0;
-    farQuaad.w = t_texdata.width; 
-    farQuaad.h = t_texdata.height;
+    SDL_FRect fRenderQuad;
+    fRenderQuad.x = player.m_pos.x;
+    fRenderQuad.y = player.m_pos.y;
+    fRenderQuad.w = t_texdata.width; 
+    fRenderQuad.h = t_texdata.height;
 
     //Render to screen
-    SDL_RenderCopyF(renderer, t_tex, &renderQuad, &farQuaad);
-    SDL_RenderDrawRectF(renderer, &farQuaad);
+    SDL_RenderCopyF(renderer, t_tex, &renderQuad, &fRenderQuad);
+    SDL_RenderDrawRectF(renderer, &fRenderQuad);
 }
 
 void Game::render()
