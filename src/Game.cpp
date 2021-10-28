@@ -158,6 +158,16 @@ void Game::processEvents()
             m_gameIsRunning = false;
         }
 
+        if (e.type == SDL_KEYDOWN)
+	    {
+            processKeyPress(e);
+	    }
+
+	    if (e.type == SDL_KEYUP)
+	    {
+            processKeyRelease(e);
+	    }
+
         if(e.type == SDL_MOUSEBUTTONDOWN)
         {
             processMouse(e.button);
@@ -167,13 +177,60 @@ void Game::processEvents()
 
 void Game::processMouse(SDL_MouseButtonEvent& b)
 {
-    // process potential mouse events
+    
+}
+
+void Game::processKeyPress(SDL_Event& e)
+{
+    // process key press events
+    if (e.key.keysym.sym == SDLK_w)
+	{
+		m_velocity.y = -10.0f;
+	}
+		if (e.key.keysym.sym == SDLK_s)
+	{
+		m_velocity.y = 10.0f;
+	}
+		if (e.key.keysym.sym == SDLK_a)
+	{
+		m_velocity.x = -10.0f;
+	}
+		if (e.key.keysym.sym == SDLK_d)
+	{
+		m_velocity.x = 10.0f;
+        input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
+	}
+
+}
+
+void Game::processKeyRelease(SDL_Event& e)
+{
+    // if a move key is released, set velocity to 0
+    if (e.key.keysym.sym == SDLK_w)
+	{
+		m_velocity.y = 0;
+	}
+	if (e.key.keysym.sym == SDLK_s)
+	{
+		m_velocity.y = 0;
+	}
+	if (e.key.keysym.sym == SDLK_a)
+	{
+		m_velocity.x = 0;
+        
+	}
+	if (e.key.keysym.sym == SDLK_d)
+	{
+		m_velocity.x = 0;
+        input.setCurrent(gpp::Events::Event::RUN_RIGHT_STOP_EVENT);
+	}
 }
 
 void Game::update(float dt)
 {
    // std::cout << "Updating" << std::endl;
-   player.move(Vector2(40.0f * dt,0));
+   player.handleInput(input);
+   player.move(m_velocity * dt);
    player.update(dt);
 }
 

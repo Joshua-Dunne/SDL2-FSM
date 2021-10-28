@@ -28,6 +28,8 @@ private:
 
     void processEvents();
     void processMouse(SDL_MouseButtonEvent& b);
+    void processKeyPress(SDL_Event& e);
+    void processKeyRelease(SDL_Event& e);
     void update(float dt);
     void render();
 
@@ -54,6 +56,9 @@ private:
     SDL_Renderer* renderer = NULL;
 
     Player player{Vector2(0,0)};
+    Vector2 m_velocity{Vector2(0,0)};
+
+    gpp::Events input;
 
     SDL_Texture* m_playerTex = NULL;
     TextureData m_playerTexData;
