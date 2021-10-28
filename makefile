@@ -6,7 +6,7 @@ COMP_FILES	:= ${SRC_DIR}/*
 
 INCLUDE		:= ${SDL_SDK}\include
 LIB			:= ${SDL_SDK}\lib
-DLL			:= "-lmingw32" "-lSDL2main" "-lSDL2"
+DLL			:= "-lmingw32" "-lSDL2main" "-lSDL2" "-lSDL2_image"
 
 MSG_START	:= "Build Started"
 MSG_END		:= "Build Complete"

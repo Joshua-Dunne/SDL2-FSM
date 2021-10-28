@@ -36,14 +36,14 @@ void Game::run()
             // enable VSync when creating renderer
             // passing the flag SDL_RENDERER_PRESENTVSYNC to SDL_CreateRenderer()
             // causes subsequent calls to SDL_RenderPresent() to wait before showing the window.
-            SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED );
+            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         }
     }
 
     int imgFlags = IMG_INIT_PNG;
 	if (!(IMG_Init(imgFlags) & imgFlags))
 	{
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+		std::cout << "SDL_image could not initialize! SDL_image Error: " << IMG_GetError() << std::endl;
 	}
 
     loadMedia();
@@ -52,14 +52,11 @@ void Game::run()
 
     // calculate elapsed time for first frame
 	float m_elapsed = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
-
-	// Cap to 60 FPS
-	SDL_Delay(floor(16.666f - m_elapsed));
-
     // This is only done for the first initial wave, as everything else is calculated as the loop progresses
 
 
     m_gameIsRunning = true;
+
     while (m_gameIsRunning)
     {
         Uint32 current = SDL_GetTicks();
@@ -136,6 +133,12 @@ SDL_Texture* Game::loadFromFilePNG(std::string path, SDL_Texture* tex, TextureDa
 			{
 				printf("Unable to create texture from %s! SDL Error: %s\n", path, SDL_GetError());
 			}
+            else
+            {
+                //Get image dimensions
+                data.width = loadedSurface->w;
+                data.height = loadedSurface->h;
+            }
 
 			SDL_FreeSurface(loadedSurface);
 		}
@@ -173,17 +176,24 @@ void Game::update(float dt)
    player.update(dt);
 }
 
-void Game::renderTexture(SDL_Texture* t_tex, TextureData t_data)
+void Game::renderTexture(SDL_Texture* t_tex, TextureData t_texdata)
 {
     //Set rendering space and render to screen
     SDL_Rect renderQuad;
-    renderQuad.x = t_data.x;
-    renderQuad.y = t_data.y;
-    renderQuad.w = t_data.width;
-    renderQuad.h = t_data.height;
+    renderQuad.x = t_texdata.x;
+    renderQuad.y = t_texdata.y;
+    renderQuad.w = t_texdata.width;
+    renderQuad.h = t_texdata.height;
+
+    SDL_FRect farQuaad;
+    farQuaad.x = 0;
+    farQuaad.y = 0;
+    farQuaad.w = t_texdata.width; 
+    farQuaad.h = t_texdata.height;
 
     //Render to screen
-    SDL_RenderCopy(renderer, t_tex, NULL, &renderQuad);
+    SDL_RenderCopyF(renderer, t_tex, &renderQuad, &farQuaad);
+    SDL_RenderDrawRectF(renderer, &farQuaad);
 }
 
 void Game::render()

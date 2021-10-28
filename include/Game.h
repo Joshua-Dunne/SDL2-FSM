@@ -21,7 +21,7 @@ private:
 
     SDL_Texture* loadFromFileBMP(std::string path, SDL_Texture* tex, TextureData& data);
     SDL_Texture* loadFromFilePNG(std::string path, SDL_Texture* tex, TextureData& data);
-    void renderTexture(SDL_Texture* t_tex, TextureData t_data);
+    void renderTexture(SDL_Texture* t_tex, TextureData t_texdata);
 
     //Frees media and shuts down SDL
     void close();
