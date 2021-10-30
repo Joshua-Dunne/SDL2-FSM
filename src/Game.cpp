@@ -177,52 +177,196 @@ void Game::processEvents()
 
 void Game::processMouse(SDL_MouseButtonEvent& b)
 {
-    
+    // process mouse events
 }
 
+// e.key.keysym.sym == SDLK_w
 void Game::processKeyPress(SDL_Event& e)
 {
-    // process key press events
-    if (e.key.keysym.sym == SDLK_w)
-	{
-		m_velocity.y = -10.0f;
+    if (e.key.keysym.sym == SDLK_q) {
+		DEBUG_MSG("gpp::Events::Event::DIED_EVENT");
+		input.setCurrent(gpp::Events::Event::DIED_EVENT);
 	}
-		if (e.key.keysym.sym == SDLK_s)
-	{
-		m_velocity.y = 10.0f;
+	// Revieved Event
+	else if (e.key.keysym.sym == SDLK_r) {
+		DEBUG_MSG("gpp::Events::Event::REVIVED_EVENT");
+		input.setCurrent(gpp::Events::Event::REVIVED_EVENT);
 	}
-		if (e.key.keysym.sym == SDLK_a)
+	// Running attack
+	else if (e.key.keysym.sym == SDLK_z
+		&&
+		e.key.keysym.sym == SDLK_d
+		||
+		e.key.keysym.sym == SDLK_d
+		&&
+		e.key.keysym.sym == SDLK_z
+		)
 	{
-		m_velocity.x = -10.0f;
+		DEBUG_MSG("gpp::Events::Event::ATTACK_START");
+		input.setCurrent(gpp::Events::Event::ATTACK_START_EVENT);
 	}
-		if (e.key.keysym.sym == SDLK_d)
+	// Attack
+	else if (e.key.keysym.sym == SDLK_z)
 	{
-		m_velocity.x = 10.0f;
-        input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
+		DEBUG_MSG("gpp::Events::Event::ATTACK_START_EVENT");
+		input.setCurrent(gpp::Events::Event::ATTACK_START_EVENT);
 	}
-
+	// Running Throw attack
+	else if (e.key.keysym.sym == SDLK_x
+		&&
+		e.key.keysym.sym == SDLK_d
+		||
+		e.key.keysym.sym == SDLK_d
+		&&
+		e.key.keysym.sym == SDLK_x
+		)
+	{
+		DEBUG_MSG("gpp::Events::Event::THROW_START_EVENT");
+		input.setCurrent(gpp::Events::Event::THROW_START_EVENT);
+	}
+	// Throw Attack
+	else if (e.key.keysym.sym == SDLK_x)
+	{
+		DEBUG_MSG("gpp::Events::Event::THROW_START_EVENT");
+		input.setCurrent(gpp::Events::Event::THROW_START_EVENT);
+	}
+	// Run Right
+	else if (e.key.keysym.sym == SDLK_d)
+	{
+		DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
+		input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
+	}
+	// Climb Up
+	else if (e.key.keysym.sym == SDLK_w)
+	{
+		DEBUG_MSG("gpp::Events::Event::MOVE_UP_START_EVENT");
+		input.setCurrent(gpp::Events::Event::MOVE_UP_START_EVENT);
+	}
+	// Climb Down
+	else if (e.key.keysym.sym == SDLK_s)
+	{
+		DEBUG_MSG("gpp::Events::Event::MOVE_DOWN_START_EVENT");
+		input.setCurrent(gpp::Events::Event::MOVE_DOWN_START_EVENT);
+	}
+	// Hit Bottom of Ladder Event
+	else if (e.key.keysym.sym == SDLK_c)
+	{
+		DEBUG_MSG("gpp::Events::Event::HIT_LADDER_BOTTOM_EVENT");
+		input.setCurrent(gpp::Events::Event::HIT_LADDER_BOTTOM_EVENT);
+	}
+	// Hit Top of Ladder Event
+	else if (e.key.keysym.sym == SDLK_t)
+	{
+		DEBUG_MSG("gpp::Events::Event::HIT_LADDER_TOP_EVENT");
+		input.setCurrent(gpp::Events::Event::HIT_LADDER_TOP_EVENT);
+	}
+	// Jump Run
+	if (e.key.keysym.sym == SDLK_SPACE
+		&&
+		e.key.keysym.sym == SDLK_d
+		||
+		e.key.keysym.sym == SDLK_d
+		&&
+		e.key.keysym.sym == SDLK_SPACE
+		)
+	{
+		DEBUG_MSG("gpp::Events::Event::JUMP_UP_EVENT");
+		input.setCurrent(gpp::Events::Event::JUMP_UP_EVENT);
+	}
+	// Jump Event
+	else if (e.key.keysym.sym == SDLK_SPACE)
+	{
+		DEBUG_MSG("gpp::Events::Event::JUMP_UP_EVENT");
+		input.setCurrent(gpp::Events::Event::JUMP_UP_EVENT);
+	}
+	// Running Slide
+	else if (e.key.keysym.sym == SDLK_s
+		&&
+		e.key.keysym.sym == SDLK_d
+		||
+		e.key.keysym.sym == SDLK_d
+		&&
+		e.key.keysym.sym == SDLK_s
+		)
+	{
+		DEBUG_MSG("gpp::Events::Event::SLIDE_EVENT");
+		input.setCurrent(gpp::Events::Event::SLIDE_EVENT);
+	}
+	// Hit Ground Event
+	else if (e.key.keysym.sym == SDLK_h)
+	{
+		DEBUG_MSG("gpp::Events::Event::HIT_GROUND_EVENT");
+		input.setCurrent(gpp::Events::Event::HIT_GROUND_EVENT);
+	}
+	// Jump Attack Event
+	else if (e.key.keysym.sym == SDLK_h)
+	{
+		DEBUG_MSG("gpp::Events::Event::HIT_GROUND_EVENT");
+		input.setCurrent(gpp::Events::Event::HIT_GROUND_EVENT);
+	}
+	// Jump Throw Attack Event
+	else if (e.key.keysym.sym == SDLK_h)
+	{
+		DEBUG_MSG("gpp::Events::Event::HIT_GROUND_EVENT");
+		input.setCurrent(gpp::Events::Event::HIT_GROUND_EVENT);
+	}
 }
 
 void Game::processKeyRelease(SDL_Event& e)
 {
-    // if a move key is released, set velocity to 0
-    if (e.key.keysym.sym == SDLK_w)
+	// Run and Stop Attack
+	if (e.key.keysym.sym == SDLK_z
+		&&
+		e.key.keysym.sym == SDLK_d)
 	{
-		m_velocity.y = 0;
+		DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
+		input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
 	}
-	if (e.key.keysym.sym == SDLK_s)
+	// Stop Attack
+	else if(e.key.keysym.sym == SDLK_z)
 	{
-		m_velocity.y = 0;
+		DEBUG_MSG("gpp::Events::Event::ATTACK_STOP_EVENT");
+		input.setCurrent(gpp::Events::Event::ATTACK_STOP_EVENT);
 	}
-	if (e.key.keysym.sym == SDLK_a)
+	// Run and Stop Throw Attack
+	else if (e.key.keysym.sym == SDLK_x
+		&&
+		e.key.keysym.sym == SDLK_d)
 	{
-		m_velocity.x = 0;
-        
+		DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
+		input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
 	}
-	if (e.key.keysym.sym == SDLK_d)
+	// Stop Throw Attack
+	else if (e.key.keysym.sym == SDLK_x)
 	{
-		m_velocity.x = 0;
-        input.setCurrent(gpp::Events::Event::RUN_RIGHT_STOP_EVENT);
+		DEBUG_MSG("gpp::Events::Event::THROW_STOP_EVENT");
+		input.setCurrent(gpp::Events::Event::THROW_STOP_EVENT);
+	}
+	// Stop Running Right
+	else if (e.key.keysym.sym == SDLK_d)
+	{
+		DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_STOP_EVENT");
+		input.setCurrent(gpp::Events::Event::RUN_RIGHT_STOP_EVENT);
+	}
+	// Stop Slide
+	else if (e.key.keysym.sym == SDLK_s
+		&&
+		e.key.keysym.sym == SDLK_d)
+	{
+		DEBUG_MSG("gpp::Events::Event::RUN_RIGHT_START_EVENT");
+		input.setCurrent(gpp::Events::Event::RUN_RIGHT_START_EVENT);
+	}
+	// Stop Moving Up
+	else if (e.key.keysym.sym == SDLK_w)
+	{
+		DEBUG_MSG("gpp::Events::Event::MOVE_UP_STOP_EVENT");
+		input.setCurrent(gpp::Events::Event::MOVE_UP_STOP_EVENT);
+	}
+	// Stop Moving Down
+	else if (e.key.keysym.sym == SDLK_s)
+	{
+		DEBUG_MSG("gpp::Events::Event::MOVE_DOWN_STOP_EVENT");
+		input.setCurrent(gpp::Events::Event::MOVE_DOWN_STOP_EVENT);
 	}
 }
 
