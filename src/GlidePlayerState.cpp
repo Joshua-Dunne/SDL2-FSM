@@ -35,7 +35,7 @@ void GlidePlayerState::update(Player& player, float dt) {
 }
 void GlidePlayerState::enter(Player& player)
 {
-	DEBUG_MSG("Entering RevivedPlayerState");
+	DEBUG_MSG("Entering GlidePlayerState");
 
 	player.getAnimatedSprite().clearFrames();
 
@@ -54,5 +54,5 @@ void GlidePlayerState::enter(Player& player)
 }
 void GlidePlayerState::exit(Player& player)
 {
-	DEBUG_MSG("Exiting RevivedPlayerState");
+	DEBUG_MSG("Exiting GlidePlayerState");
 }

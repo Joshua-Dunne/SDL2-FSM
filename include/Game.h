@@ -42,9 +42,11 @@ private:
     //Event handler
     SDL_Event e;
 
+    bool m_buttonPressed = false;
+
     //Screen dimension constants
-    const int SCREEN_WIDTH = 1280;
-    const int SCREEN_HEIGHT = 720;
+    const int SCREEN_WIDTH = 1600;
+    const int SCREEN_HEIGHT = 1200;
 
     //The window we'll be rendering to
     SDL_Window* window = NULL;
@@ -55,7 +57,7 @@ private:
     // Used to render images to a window
     SDL_Renderer* renderer = NULL;
 
-    Player player{Vector2(0,0)};
+    Player player{Vector2(0,400)};
     Vector2 m_velocity{Vector2(0,0)};
 
     gpp::Events input;

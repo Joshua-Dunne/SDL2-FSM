@@ -24,6 +24,13 @@ void Player::handleInput(gpp::Events input) {
 	PlayerState * state = m_state->handleInput(input);
 
 	if (state != NULL) {
+
+		if(input.getCurrent() == gpp::Events::Event::RUN_RIGHT_START_EVENT){
+			m_runningRight = true;
+		} else if( input.getCurrent() == gpp::Events::Event::RUN_RIGHT_STOP_EVENT){
+			m_runningRight = false;
+		}
+
 		m_state->exit(*this);
 		delete m_state;
 		m_state = state;
@@ -34,6 +41,11 @@ void Player::handleInput(gpp::Events input) {
 void Player::update(float dt) {
 	m_animated_sprite.update(dt);
 	m_state->update(*this, dt);
+
+	if(m_runningRight)
+	{
+		move(Vector2(m_speed * dt, 0));
+	}
 }
 
 AnimatedSprite& Player::getAnimatedSprite() {

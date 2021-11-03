@@ -27,6 +27,9 @@ public:
 	void move(Vector2);
 
 	Vector2 m_pos;
+
+	float m_speed = 250.0f;
+	bool m_runningRight = false;
 };
 #endif
 
